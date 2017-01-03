@@ -14,7 +14,7 @@
     </bean>
 
     <!-- 凭证匹配器 -->
-    <bean id="credentialsMatcher" class="com.ocean.wy.magi.auth.credentials.RetryLimitHashedCredentialsMatcher">
+    <bean id="credentialsMatcher" class="com.ocean.wy.magi.auth.server.credentials.RetryLimitHashedCredentialsMatcher">
         <constructor-arg ref="cacheManager"/>
         <property name="hashAlgorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>
@@ -22,7 +22,7 @@
     </bean>
 
     <!-- Realm实现 -->
-    <bean id="userRealm" class="com.ocean.wy.magi.auth.realm.UserRealm">
+    <bean id="userRealm" class="com.ocean.wy.magi.auth.server.realm.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cachingEnabled" value="false"/>
     </bean>
@@ -56,13 +56,13 @@
     </bean>
 
     <!-- 会话DAO -->
-    <bean id="sessionDAO" class="com.ocean.wy.magi.auth.session.dao.MySqlSessionDAO">
+    <bean id="sessionDAO" class="com.ocean.wy.magi.auth.server.session.dao.MySqlSessionDAO">
         <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
     </bean>
 
     <!-- 会话验证调度器 -->
-    <bean id="sessionValidationScheduler" class="com.ocean.wy.magi.auth.session.scheduler.MySqlSessionValidationScheduler">
+    <bean id="sessionValidationScheduler" class="com.ocean.wy.magi.auth.server.session.scheduler.MySqlSessionValidationScheduler">
         <property name="interval" value="1800000"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
@@ -92,13 +92,13 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="com.ocean.wy.magi.auth.web.shiro.filter.ServerFormAuthenticationFilter">
+    <bean id="formAuthenticationFilter" class="com.ocean.wy.magi.auth.server.web.shiro.filter.ServerFormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
     </bean>
 
-    <bean id="sysUserFilter" class="com.ocean.wy.magi.auth.web.shiro.filter.SysUserFilter"/>
+    <bean id="sysUserFilter" class="com.ocean.wy.magi.auth.server.web.shiro.filter.SysUserFilter"/>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
