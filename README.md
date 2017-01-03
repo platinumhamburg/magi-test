@@ -1,2 +1,0 @@
-# magi-test
-test
