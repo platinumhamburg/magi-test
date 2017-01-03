@@ -36,17 +36,14 @@ public class RoleServiceImpl implements RoleService {
         roleDao.deleteRole(roleId);
     }
 
-    @Override
     public Role findOne(Long roleId) {
         return roleDao.findOne(roleId);
     }
 
-    @Override
     public List<Role> findAll() {
         return roleDao.findAll();
     }
 
-    @Override
     public Set<String> findRoles(Long... roleIds) {
         Set<String> roles = new HashSet<String>();
         for(Long roleId : roleIds) {
@@ -58,7 +55,6 @@ public class RoleServiceImpl implements RoleService {
         return roles;
     }
 
-    @Override
     public Set<String> findPermissions(Long[] roleIds) {
         Set<Long> resourceIds = new HashSet<Long>();
         for(Long roleId : roleIds) {

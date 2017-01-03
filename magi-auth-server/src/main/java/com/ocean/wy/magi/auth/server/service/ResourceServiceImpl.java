@@ -25,32 +25,40 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     private ResourceDao resourceDao;
 
-    @Override
+    private boolean hasPermission(Set<String> permissions, Resource resource) {
+        if(StringUtils.isEmpty(resource.getPermission())) {
+            return true;
+        }
+        for(String permission : permissions) {
+            WildcardPermission p1 = new WildcardPermission(permission);
+            WildcardPermission p2 = new WildcardPermission(resource.getPermission());
+            if(p1.implies(p2) || p2.implies(p1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Resource createResource(Resource resource) {
         return resourceDao.createResource(resource);
     }
 
-    @Override
     public Resource updateResource(Resource resource) {
         return resourceDao.updateResource(resource);
     }
 
-    @Override
     public void deleteResource(Long resourceId) {
         resourceDao.deleteResource(resourceId);
     }
 
-    @Override
     public Resource findOne(Long resourceId) {
         return resourceDao.findOne(resourceId);
     }
 
-    @Override
     public List<Resource> findAll() {
         return resourceDao.findAll();
     }
 
-    @Override
     public Set<String> findPermissions(Set<Long> resourceIds) {
         Set<String> permissions = new HashSet<String>();
         for(Long resourceId : resourceIds) {
@@ -62,7 +70,6 @@ public class ResourceServiceImpl implements ResourceService {
         return permissions;
     }
 
-    @Override
     public List<Resource> findMenus(Set<String> permissions) {
         List<Resource> allResources = findAll();
         List<Resource> menus = new ArrayList<Resource>();
@@ -79,19 +86,5 @@ public class ResourceServiceImpl implements ResourceService {
             menus.add(resource);
         }
         return menus;
-    }
-
-    private boolean hasPermission(Set<String> permissions, Resource resource) {
-        if(StringUtils.isEmpty(resource.getPermission())) {
-            return true;
-        }
-        for(String permission : permissions) {
-            WildcardPermission p1 = new WildcardPermission(permission);
-            WildcardPermission p2 = new WildcardPermission(resource.getPermission());
-            if(p1.implies(p2) || p2.implies(p1)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

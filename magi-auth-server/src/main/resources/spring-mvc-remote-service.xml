@@ -12,6 +12,6 @@
 
     <bean name="/remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
         <property name="service" ref="remoteService"/>
-        <property name="serviceInterface" value="com.ocean.wy.magi.auth.server.remote.RemoteServiceInterface"/>
+        <property name="serviceInterface" value="com.ocean.wy.magi.auth.core.remote.RemoteServiceInterface"/>
     </bean>
 </beans>

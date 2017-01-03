@@ -29,9 +29,10 @@ public class ResourceDaoImpl implements ResourceDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
+
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				// TODO Auto-generated method stub
+				PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
                 psst.setString(count++, resource.getName());
                 psst.setString(count++, resource.getType().name());
@@ -41,18 +42,10 @@ public class ResourceDaoImpl implements ResourceDao {
                 psst.setString(count++, resource.getParentIds());
                 psst.setBoolean(count++, resource.getAvailable());
                 return psst;
-            }
+			}
+            
         }, keyHolder);
         resource.setId(keyHolder.getKey().longValue());
-        return resource;
-    }
-
-    @Override
-    public Resource updateResource(Resource resource) {
-        final String sql = "update sys_resource set name=?, type=?, url=?, permission=?, parent_id=?, parent_ids=?, available=? where id=?";
-        jdbcTemplate.update(
-                sql,
-                resource.getName(), resource.getType().name(), resource.getUrl(), resource.getPermission(), resource.getParentId(), resource.getParentIds(), resource.getAvailable(), resource.getId());
         return resource;
     }
 
@@ -64,21 +57,35 @@ public class ResourceDaoImpl implements ResourceDao {
         jdbcTemplate.update(deleteDescendantsSql, resource.makeSelfAsParentIds() + "%");
     }
 
+	public Resource updateResource(Resource resource) {
+		// TODO Auto-generated method stub
+		final String sql = "update sys_resource set name=?, type=?, url=?, permission=?, parent_id=?, parent_ids=?, available=? where id=?";
+        jdbcTemplate.update(
+                sql,
+                resource.getName(), resource.getType().name(), resource.getUrl(), resource.getPermission(), resource.getParentId(), resource.getParentIds(), resource.getAvailable(), resource.getId());
+        return resource;
+	}
 
-    @Override
-    public Resource findOne(Long resourceId) {
-        final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
+
+	public Resource findOne(Long resourceId) {
+		// TODO Auto-generated method stub
+		final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
         List<Resource> resourceList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class), resourceId);
         if(resourceList.size() == 0) {
             return null;
         }
         return resourceList.get(0);
-    }
+	}
 
-    @Override
-    public List<Resource> findAll() {
-        final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
+
+
+	public List<Resource> findAll() {
+		// TODO Auto-generated method stub
+		final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));
-    }
+	}
+
+
+    
 
 }

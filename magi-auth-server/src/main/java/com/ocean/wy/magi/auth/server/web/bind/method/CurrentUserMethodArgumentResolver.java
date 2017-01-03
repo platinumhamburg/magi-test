@@ -19,17 +19,20 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
     public CurrentUserMethodArgumentResolver() {
     }
 
-    @Override
-    public boolean supportsParameter(MethodParameter parameter) {
-        if (parameter.hasParameterAnnotation(CurrentUser.class)) {
+	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+			WebDataBinderFactory binderFactory) throws Exception {
+		// TODO Auto-generated method stub
+		CurrentUser currentUserAnnotation = parameter.getParameterAnnotation(CurrentUser.class);
+        return webRequest.getAttribute(currentUserAnnotation.value(), NativeWebRequest.SCOPE_REQUEST);
+	}
+
+	public boolean supportsParameter(MethodParameter parameter) {
+		// TODO Auto-generated method stub
+		if (parameter.hasParameterAnnotation(CurrentUser.class)) {
             return true;
         }
         return false;
-    }
+	}
 
-    @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        CurrentUser currentUserAnnotation = parameter.getParameterAnnotation(CurrentUser.class);
-        return webRequest.getAttribute(currentUserAnnotation.value(), NativeWebRequest.SCOPE_REQUEST);
-    }
+    
 }

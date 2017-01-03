@@ -34,15 +34,7 @@ public class UserServiceImpl implements UserService {
         return userDao.createUser(user);
     }
 
-    @Override
-    public User updateUser(User user) {
-        return userDao.updateUser(user);
-    }
-
-    @Override
-    public void deleteUser(Long userId) {
-        userDao.deleteUser(userId);
-    }
+    
 
     /**
      * 修改密码
@@ -56,16 +48,19 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
-    @Override
-    public User findOne(Long userId) {
-        return userDao.findOne(userId);
+
+    
+
+
+    public User updateUser(User user) {
+        return userDao.updateUser(user);
     }
 
-    @Override
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
 
+    public void deleteUser(Long userId) {
+        userDao.deleteUser(userId);
+    }
+    
     /**
      * 根据用户名查找用户
      * @param username
@@ -74,6 +69,20 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
+
+
+
+	public User findOne(Long userId) {
+		// TODO Auto-generated method stub
+		return userDao.findOne(userId);
+	}
+
+
+
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return userDao.findAll();
+	}
 
 
 }

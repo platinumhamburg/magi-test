@@ -30,27 +30,20 @@ public class AppDaoImpl implements AppDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
+
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				// TODO Auto-generated method stub
+				PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
                 psst.setString(count++, app.getName());
                 psst.setString(count++, app.getAppKey());
                 psst.setString(count++, app.getAppSecret());
                 psst.setBoolean(count++, app.getAvailable());
                 return psst;
-            }
+			}
+            
         }, keyHolder);
         app.setId(keyHolder.getKey().longValue());
-        return app;
-    }
-
-    @Override
-    public App updateApp(App app) {
-        final String sql = "update sys_app set name=?, app_key=?, app_secret=?, available=? where id=?";
-        jdbcTemplate.update(
-                sql,
-                app.getName(), app.getAppKey(), app.getAppSecret(), app.getAvailable(), app.getId());
         return app;
     }
 
@@ -59,30 +52,39 @@ public class AppDaoImpl implements AppDao {
         jdbcTemplate.update(sql, appId);
     }
 
+	public App updateApp(App app) {
+		// TODO Auto-generated method stub
+		final String sql = "update sys_app set name=?, app_key=?, app_secret=?, available=? where id=?";
+        jdbcTemplate.update(
+                sql,
+                app.getName(), app.getAppKey(), app.getAppSecret(), app.getAvailable(), app.getId());
+        return app;
+	}
 
-    @Override
-    public App findOne(Long appId) {
-        final String sql = "select id, name, app_key, app_secret, available from sys_app where id=?";
+	public App findOne(Long appId) {
+		// TODO Auto-generated method stub
+		final String sql = "select id, name, app_key, app_secret, available from sys_app where id=?";
         List<App> appList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(App.class), appId);
         if(appList.size() == 0) {
             return null;
         }
         return appList.get(0);
-    }
+	}
 
-    @Override
-    public List<App> findAll() {
-        final String sql = "select id, name, app_key, app_secret, available from sys_app";
+	public List<App> findAll() {
+		// TODO Auto-generated method stub
+		final String sql = "select id, name, app_key, app_secret, available from sys_app";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(App.class));
-    }
+	}
 
-    @Override
-    public Long findAppIdByAppKey(String appKey) {
-        final String sql = "select id from sys_app where app_key=?";
+	public Long findAppIdByAppKey(String appKey) {
+		// TODO Auto-generated method stub
+		final String sql = "select id from sys_app where app_key=?";
         List<Long> appIdList = jdbcTemplate.queryForList(sql, Long.class, appKey);
         if(appIdList.size() == 0) {
             return null;
         }
         return appIdList.get(0);
-    }
+	}
+    
 }

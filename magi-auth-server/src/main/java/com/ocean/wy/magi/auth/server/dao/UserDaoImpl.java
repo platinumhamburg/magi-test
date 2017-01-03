@@ -30,9 +30,10 @@ public class UserDaoImpl implements UserDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
+
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				// TODO Auto-generated method stub
+				PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
                 psst.setLong(count++, user.getOrganizationId());
                 psst.setString(count++, user.getUsername());
@@ -40,7 +41,8 @@ public class UserDaoImpl implements UserDao {
                 psst.setString(count++, user.getSalt());
                 psst.setBoolean(count++, user.getLocked());
                 return psst;
-            }
+			}
+           
         }, keyHolder);
 
         user.setId(keyHolder.getKey().longValue());
@@ -60,30 +62,31 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update(sql, userId);
     }
 
-    @Override
-    public User findOne(Long userId) {
-        String sql = "select id, organization_id, username, password, salt, locked from sys_user where id=?";
+	public User findOne(Long userId) {
+		// TODO Auto-generated method stub
+		String sql = "select id, organization_id, username, password, salt, locked from sys_user where id=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), userId);
         if(userList.size() == 0) {
             return null;
         }
         return userList.get(0);
-    }
+	}
 
-    @Override
-    public List<User> findAll() {
-        String sql = "select id, organization_id, username, password, salt, locked from sys_user";
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		String sql = "select id, organization_id, username, password, salt, locked from sys_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
-    }
+	}
 
-
-    @Override
-    public User findByUsername(String username) {
-        String sql = "select id, organization_id, username, password, salt, locked from sys_user where username=?";
+	public User findByUsername(String username) {
+		// TODO Auto-generated method stub
+		String sql = "select id, organization_id, username, password, salt, locked from sys_user where username=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), username);
         if(userList.size() == 0) {
             return null;
         }
         return userList.get(0);
-    }
+	}
 }
+
+   

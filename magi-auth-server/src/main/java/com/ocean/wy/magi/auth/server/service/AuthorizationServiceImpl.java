@@ -65,15 +65,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         authorizationDao.deleteAuthorization(authorizationId);
     }
 
-    @Override
-    public Authorization findOne(Long authorizationId) {
-        return authorizationDao.findOne(authorizationId);
-    }
-
-    @Override
-    public List<Authorization> findAll() {
-        return authorizationDao.findAll();
-    }
+    
 
     /**
      * 根据用户名查找其角色
@@ -116,6 +108,16 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         }
         return roleService.findPermissions(authorization.getRoleIds().toArray(new Long[0]));
     }
+
+	public Authorization findOne(Long authorizationId) {
+		// TODO Auto-generated method stub
+		return authorizationDao.findOne(authorizationId);
+	}
+
+	public List<Authorization> findAll() {
+		// TODO Auto-generated method stub
+		return authorizationDao.findAll();
+	}
 
 
 }
