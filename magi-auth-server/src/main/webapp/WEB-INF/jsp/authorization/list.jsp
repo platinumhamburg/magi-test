@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="zhangfn" uri="http://github.com/ocean.wy/tags/zhang-functions" %>
+<%@taglib prefix="fn" uri="http://github.com/ocean.wy/tags/fn" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
@@ -28,9 +28,9 @@
     <tbody>
         <c:forEach items="${authorizationList}" var="authorization">
             <tr>
-                <td>${zhangfn:appName(authorization.appId)}</td>
-                <td>${zhangfn:username(authorization.userId)}</td>
-                <td>${zhangfn:roleNames(authorization.roleIds)}</td>
+                <td>${fn:appName(authorization.appId)}</td>
+                <td>${fn:username(authorization.userId)}</td>
+                <td>${fn:roleNames(authorization.roleIds)}</td>
                 <td>
                     <shiro:hasPermission name="authorization:update">
                         <a href="${pageContext.request.contextPath}/authorization/${authorization.id}/update">修改</a>

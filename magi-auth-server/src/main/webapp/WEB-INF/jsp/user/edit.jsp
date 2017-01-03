@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="zhangfn" uri="http://github.com/ocean.wy/tags/zhang-functions" %>
+<%@taglib prefix="fn" uri="http://github.com/ocean.wy/tags/fn" %>
 <html>
 <head>
     <title></title>
@@ -38,7 +38,7 @@
         <div class="form-group">
             <form:label path="organizationId">所属组织：</form:label>
             <form:hidden path="organizationId"/>
-            <input type="text" id="organizationName" name="organizationName" value="${zhangfn:organizationName(user.organizationId)}" readonly>
+            <input type="text" id="organizationName" name="organizationName" value="${fn:organizationName(user.organizationId)}" readonly>
             <a id="menuBtn" href="#">选择</a>
         </div>
 

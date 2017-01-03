@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="zhangfn" uri="http://github.com/ocean.wy/tags/zhang-functions" %>
+<%@taglib prefix="fn" uri="http://github.com/ocean.wy/tags/fn" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
@@ -30,7 +30,7 @@
             <tr>
                 <td>${role.role}</td>
                 <td>${role.description}</td>
-                <td>${zhangfn:resourceNames(role.resourceIds)}</td>
+                <td>${fn:resourceNames(role.resourceIds)}</td>
                 <td>
                     <shiro:hasPermission name="role:update">
                         <a href="${pageContext.request.contextPath}/role/${role.id}/update">修改</a>
