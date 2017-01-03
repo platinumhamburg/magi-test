@@ -3,16 +3,16 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
-    <title>Shiro综合案例</title>
+    <title>统一身份认证服务器</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layout-default-latest.css">
 </head>
 <body>
 
 <iframe name="content" class="ui-layout-center"
         src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
-<div class="ui-layout-north">欢迎[<shiro:principal/>]学习Shiro综合案例，<a href="${pageContext.request.contextPath}/logout">退出</a></div>
+<div class="ui-layout-north">欢迎[<shiro:principal/>]统一身份认证服务器，<a href="${pageContext.request.contextPath}/logout">退出</a></div>
 <div class="ui-layout-south">
-    获取源码：<a href="https://github.com/ocean.wy/shiro-example" target="_blank">https://github.com/ocean.wy/shiro-example</a>
+    获取源码：<a href="https://github.com/ocean.wy/magi" target="_blank">https://github.com/ocean.wy/magi</a>
 </div>
 <div class="ui-layout-west">
     功能菜单<br/>
