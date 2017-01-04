@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-3-14
+ * <p>Date: 16-3-14
  * <p>Version: 1.0
  */
 public class ClientSavedRequest extends SavedRequest {

@@ -2,7 +2,7 @@ package com.ocean.wy.magi.auth.server;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-2-15
+ * <p>Date: 16-2-15
  * <p>Version: 1.0
  */
 public class Constants {

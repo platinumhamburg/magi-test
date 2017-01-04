@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-1-28
+ * <p>Date: 16-1-28
  * <p>Version: 1.0
  */
 public class Resource implements Serializable {

@@ -96,6 +96,7 @@
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
+        <property name="loginUrl" value="/login"/>
     </bean>
 
     <bean id="sysUserFilter" class="com.ocean.wy.magi.auth.server.web.shiro.filter.SysUserFilter"/>
@@ -104,6 +105,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login"/>
+        <property name="successUrl" value="/index" />
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>

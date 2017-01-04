@@ -1,4 +1,0 @@
-com\ocean\wy\magi\auth\client\ClientAuthenticationFilter.class
-com\ocean\wy\magi\auth\client\ClientSessionDAO.class
-com\ocean\wy\magi\auth\client\ClientShiroFilterFactoryBean.class
-com\ocean\wy\magi\auth\client\ClientRealm.class

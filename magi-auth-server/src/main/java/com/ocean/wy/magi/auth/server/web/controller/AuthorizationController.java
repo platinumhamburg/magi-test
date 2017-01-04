@@ -17,7 +17,7 @@ import com.ocean.wy.magi.auth.server.service.UserService;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-2-14
+ * <p>Date: 16-2-14
  * <p>Version: 1.0
  */
 @Controller

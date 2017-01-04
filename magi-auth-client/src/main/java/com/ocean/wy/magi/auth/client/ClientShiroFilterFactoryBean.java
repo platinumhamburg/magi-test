@@ -9,7 +9,7 @@ import javax.servlet.Filter;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-3-13
+ * <p>Date: 16-3-13
  * <p>Version: 1.0
  */
 public class ClientShiroFilterFactoryBean extends ShiroFilterFactoryBean implements ApplicationContextAware {

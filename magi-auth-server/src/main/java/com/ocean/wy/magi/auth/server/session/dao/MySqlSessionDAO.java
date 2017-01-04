@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-2-8
+ * <p>Date: 16-2-8
  * <p>Version: 1.0
  */
 public class MySqlSessionDAO extends CachingSessionDAO {

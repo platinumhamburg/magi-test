@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <p>User: Ocean.wy
- * <p>Date: 14-2-9
+ * <p>Date: 16-2-9
  * <p>Version: 1.0
  */
 public class MySqlSessionValidationScheduler implements SessionValidationScheduler, Runnable {
